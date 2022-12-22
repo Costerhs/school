@@ -1,21 +1,42 @@
-import { authes, logOut } from '../../assets/firebase/firabaseconfig'
-import { deletes, getCookie } from '../../assets/firebase/firebaseFunctions'
+import { useNavigate } from 'react-router-dom'
+import { authes } from '../../assets/firebase/firabaseconfig'
 import './style.scss'
+import google from '../../assets/img/google.png'
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const showName = () => {
-        let name = getCookie('userName')
-        console.log(name)
+    const navigate = useNavigate();
+    const login = async () => {
+        await authes()
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Successful authorization',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => navigate('/'))
     }
+    
     return (
-        <div>
-            <h1>Login</h1>
-            <button onClick={authes}>login</button>
-            <button onClick={logOut}>log out</button>
-            <button onClick={showName}>my name</button>
-            <button onClick={deletes}>delte</button>
+        <div className='login'>
+            <div className="container">
+                <h1>Login</h1>
+                <button className="login__btn" onClick={login}>
+                    <img src={google} alt="" />
+                    <p className="login__text">sign in with google</p>
+                </button>
+            </div>
         </div>
     )
 }
 
 export default Login
+
+/* <h1>Login</h1>
+            <button onClick={authes}>login</button>
+            <button onClick={logOut}>log out</button>
+            <button onClick={showName}>my name</button>
+            <button onClick={deletes}>delte</button>
+            <NavLink to={'/'}>
+                st
+            </NavLink>*/

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { setCookie } from "./firebaseFunctions";
 
 const firebaseConfig = {
@@ -20,27 +20,11 @@ export const auth = getAuth(app);
 // const analytics = getAnalytics(app);
 
 export default app;
-export const authes = () => {
-    signInWithPopup(auth, provider)
+export const authes = async() => {
+    await signInWithPopup(auth, provider)
         .then((result) => {
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
             const user = result.user;
             setCookie(user.displayName)
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
-
-            console.log(errorCode, email, credential, errorMessage)
-        });
+        })
 }
 
-export const logOut = () => {
-    signOut(auth).then(() => {
-        // Sign-out successful.
-    }).catch((error) => {
-        // An error happened.
-    });
-}
