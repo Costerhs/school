@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getStudents, postStudent } from '../../assets/firebase/firabaseconfig'
+import { getStudents } from '../../assets/firebase/firabaseconfig'
 import { getCookie } from '../../assets/firebase/firebaseFunctions'
-import s from '../../assets/img/s.jpg'
-import ModalForm from '../../component/modalForm/ModalForm'
+import ModalForm from '../../component/form/ModalForm'
 import Card from './card/Card'
 import './style.scss'
 
@@ -16,10 +15,6 @@ const Student = () => {
             navigate('auth')
         }
     }, [getCookie('userName')])
-
-    const createStudent = () => {
-        postStudent(s, 'Nuralim', 'Arzybekov', 18, "A", 11)
-    }
 
     useEffect(() => {
         getStudents(setData)

@@ -4,6 +4,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { setCookie } from "./firebaseFunctions";
 import { ref, set, update, remove, child } from 'firebase/database'
 import 'firebase/storage';
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr8362HODkkrA7DzYSGtUWFN_MoSKDjiQ",
@@ -31,18 +32,20 @@ const authes = async () => {
         })
 }
 
-const postStudent = (image, firstname, lastname, age, group, classes) => {
+const postStudent = (data) => {
     const db = getDatabase();
     const userId = push(child(ref(db), 'students')).key;
+
     set(ref(db, 'students/' + userId), {
-        firstname: firstname,
-        lastname: lastname,
-        group: group,
-        classes: classes,
-        age: age,
-        image: image,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        group: data.group,
+        classes: data.classes,
+        age: data.age,
+        image: data.image[0],
         userId: userId
     });
+    debugger
 }
 
 const deleteStudent = (id) => {
@@ -50,14 +53,12 @@ const deleteStudent = (id) => {
 }
 
 const updateStudent = (image, firstname, lastname, age, group, classes, id) => {
-    update(ref(db, 'students/' + id), {
-        firstname: firstname,
-        lastname: lastname,
-        group: group,
-        classes: classes,
-        age: age,
-        image: image,
-    });
+    const formData = new FormData();
+    // formData.append("photo", file);
+    formData.append("firstname", 'naruto');
+    formData.append("age", 54);
+    update(ref(db, 'students/' + '-NK-3vqK3iO1ln7DNy-4'), formData);
+    debugger
 }
 
 const getStudents = (setState) => {

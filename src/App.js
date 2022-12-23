@@ -15,8 +15,6 @@ const App = () => {
     } else {
       setLocation(false);
     }
-
-    console.log(location)
   }, [locat]);
 
   return (
