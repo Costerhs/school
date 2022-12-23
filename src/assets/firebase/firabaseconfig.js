@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getDatabase, onValue, push } from 'firebase/database';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { setCookie } from "./firebaseFunctions";
+import { ref, set, update, remove, child } from 'firebase/database'
+import 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr8362HODkkrA7DzYSGtUWFN_MoSKDjiQ",
@@ -13,14 +15,15 @@ const firebaseConfig = {
     measurementId: "G-BCFLB01XL0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
-export const auth = getAuth(app);
-// const analytics = getAnalytics(app);
+const db = getDatabase();
+const auth = getAuth(app);
 
-export default app;
-export const authes = async() => {
+const getDatabaseDefFunc = () => {
+    return getDatabase(app);
+}
+const authes = async () => {
     await signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
@@ -28,3 +31,42 @@ export const authes = async() => {
         })
 }
 
+const postStudent = (image, firstname, lastname, age, group, classes) => {
+    const db = getDatabase();
+    const userId = push(child(ref(db), 'students')).key;
+    set(ref(db, 'students/' + userId), {
+        firstname: firstname,
+        lastname: lastname,
+        group: group,
+        classes: classes,
+        age: age,
+        image: image,
+        userId: userId
+    });
+}
+
+const deleteStudent = (id) => {
+    remove(ref(db, `students/${id}`));
+}
+
+const updateStudent = (image, firstname, lastname, age, group, classes, id) => {
+    update(ref(db, 'students/' + id), {
+        firstname: firstname,
+        lastname: lastname,
+        group: group,
+        classes: classes,
+        age: age,
+        image: image,
+    });
+}
+
+const getStudents = (setState) => {
+    const dbRef = ref(db, 'students/');
+
+    onValue(dbRef, (snapshot) => {
+        setState(Object.values(snapshot.val()))
+    })
+}
+
+export { auth, authes, getDatabaseDefFunc, postStudent, deleteStudent, updateStudent, getStudents }
+export default app;

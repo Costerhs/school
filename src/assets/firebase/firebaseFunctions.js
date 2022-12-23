@@ -4,10 +4,10 @@ const setCookie = (name) => {
     document.cookie = `userName=${name};expires=${date1}`
 }
 
-
 const deletes = () => {
     document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 }
+
 const getCookie = (name) => {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
