@@ -22,6 +22,25 @@
             margin: 10px 0;
             font-size: 1.2em;
         }
+        .card__btns {
+            display: flex;
+            .card__btn {
+                // width: 100px;
+                // margin-right: 5px;
+                font-family: 'Roboto';
+                border-radius: 10px;
+            }
+            .card__delete {
+                width: 30px;
+                height: 100%;
+                background: none;
+                padding: 0px;
+            }
+            .card__change {
+                background: rgb(81, 206, 81);
+                // color: white;
+            }
+        }
     }
    
 }

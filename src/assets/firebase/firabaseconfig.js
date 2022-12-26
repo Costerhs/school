@@ -5,6 +5,7 @@ import { setCookie } from "./firebaseFunctions";
 import { ref, set, update, remove, child } from 'firebase/database'
 import 'firebase/storage';
 import { getStorage } from "firebase/storage";
+import Swal from "sweetalert2";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr8362HODkkrA7DzYSGtUWFN_MoSKDjiQ",
@@ -35,30 +36,24 @@ const authes = async () => {
 const postStudent = (data) => {
     const db = getDatabase();
     const userId = push(child(ref(db), 'students')).key;
-
-    set(ref(db, 'students/' + userId), {
-        firstname: data.firstname,
-        lastname: data.lastname,
-        group: data.group,
-        classes: data.classes,
-        age: data.age,
-        image: data.image[0],
-        userId: userId
-    });
-    debugger
+    let actualData = data;
+    actualData.userId = userId;
+    set(ref(db, 'students/' + userId), actualData);
 }
 
 const deleteStudent = (id) => {
     remove(ref(db, `students/${id}`));
 }
 
-const updateStudent = (image, firstname, lastname, age, group, classes, id) => {
-    const formData = new FormData();
-    // formData.append("photo", file);
-    formData.append("firstname", 'naruto');
-    formData.append("age", 54);
-    update(ref(db, 'students/' + '-NK-3vqK3iO1ln7DNy-4'), formData);
-    debugger
+const updateStudent = (data, studentId) => {
+    update(ref(db, 'students/' + studentId), data);
+    return Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Successful change',
+        showConfirmButton: false,
+        timer: 1500
+    })
 }
 
 const getStudents = (setState) => {
@@ -69,5 +64,15 @@ const getStudents = (setState) => {
     })
 }
 
-export { auth, authes, getDatabaseDefFunc, postStudent, deleteStudent, updateStudent, getStudents }
+const getStudent = (setState, id, setRadio) => {
+    const dbRef = ref(db, 'students/' + id);
+
+    onValue(dbRef, (snapshot) => {
+        setState(snapshot.val())
+        // setRadio(snapshot.val().group)
+    })
+}
+
+export { auth, authes, getDatabaseDefFunc, getStudent, postStudent, deleteStudent, updateStudent, getStudents }
 export default app;
+/*setRadio(snapshot.val().group)*/
