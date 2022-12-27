@@ -4,7 +4,7 @@ import { deleteStudent } from '../../../assets/firebase/firabaseconfig'
 import Swal from 'sweetalert2'
 import del from '../../../assets/img/del.png'
 
-const Card = ({ info, setStudentId, setIsModal }) => {
+const Card = ({ info, setStudentId, setIsModal, isAdmin }) => {
     const deletesStudent = () => {
         Swal.fire({
             title: 'Are you sure?',
@@ -26,7 +26,7 @@ const Card = ({ info, setStudentId, setIsModal }) => {
         })
 
     }
-    const cre = () => {
+    const showModalUpgradeForm = () => {
         setIsModal(true)
         setStudentId(info.userId)
     }
@@ -38,10 +38,10 @@ const Card = ({ info, setStudentId, setIsModal }) => {
                 <p className='card__group'>Группа: {info.group}</p>
                 <p className='card__class'>Класс: {info.classes}</p>
                 <p className='card__age'>Возраст: {info.age}</p>
-                <div className="card__btns">
-                    <button className="card__btn card__change" onClick={cre}>Change</button>
+                {isAdmin && <div className="card__btns">
+                    <button className="card__btn card__change" onClick={showModalUpgradeForm}>Change</button>
                     <button className="card__btn card__delete" onClick={deletesStudent}><img src={del} alt="deletebtn" /></button>
-                </div>
+                </div>}
             </div>
         </div>
     )

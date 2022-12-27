@@ -12,7 +12,7 @@ const objOfForm = [
     { name: 'age', title: 'Age', type: 'number', register: 'age', settings: { required: 'поле обязательно к заполнению' } },
     { name: 'group', title: 'Group', type: 'radio', register: 'group', elements: radioData, settings: { required: 'поле обязательно к заполнению' } },
     { name: 'class', title: 'Class', type: 'number', register: 'classes', settings: { min: { value: 1, message: 'минимальное значение 1' }, max: { value: 1, message: 'максимальное значение 11' }, required: 'поле обязательно к заполнению' } },
-    { name: 'photo', title: "Photo", type: 'file', register: 'image', settings: { required: 'поле обязательно к заполнению' } },
+    { name: 'photo', title: "Photo", type: 'text', register: 'image', settings: { required: 'поле обязательно к заполнению' } },
 ]
 
 const getFilled = (obj) => {
@@ -70,47 +70,3 @@ const ModalFormExperiment = ({ closeFunc, studentId }) => {
 }
 
 export default ModalFormExperiment
-/*defaultValue={studentData && studentData[el.register]}*/
-/*  el.elements.map((el, index) => {
-                                return <label for={`letter-${el}`} key={index}>
-                                    <input className='form__radio' onClick={(event) => setRadio(event.target.value)} checked={radio && radio == el ? true : false} type="checkbox" id={`letter-${el}`} name="letter" value={el} {...register('group', { required: 'это поле обязательно к заполнению' })} />
-                                    <p className="form__radio-text">{el}</p>
-                                </label>
-                            })*/
-/*<div className="form__item">
-                    <label for="name">Name</label>
-                    <input type="text" defaultValue={studentData && studentData.firstname} id="name" name="name" {...register('firstname', { required: 'поле обязательно к заполнению', minLength: { value: 3, message: 'должно быть больше 3 символов' } })} />
-                    {errors?.firstname?.message && <p className="form__error">{errors?.firstname.message}</p>}
-                </div>
-                <div className="form__item">
-                    <label for="surname">Surname</label>
-                    <input type="text" id="surname" defaultValue={studentData && studentData.lastname} name="surname" {...register('lastname', { required: 'поле обязательно к заполнению', minLength: { value: 3, message: 'должно быть больше 3 символов' } })} />
-                    {errors?.lastname?.message && <p className="form__error">{errors?.lastname.message}</p>}
-                </div>
-                <div className="form__item">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" defaultValue={studentData && studentData.age} {...register('age', { required: 'поле обязательно к заполнению' })} />
-                    {errors?.age?.message && <p className="form__error">{errors?.age.message}</p>}
-                </div>
-                <div className="form__item">
-                    <label for="group">Group</label>
-                    <div className="form__group">
-                        {radioData.map((el, index) => {
-                            return <label for={`letter-${el}`} key={index}>
-                                <input className='form__radio' onClick={(event) => setRadio(event.target.value)} checked={radio && radio == el ? true : false} type="checkbox" id={`letter-${el}`} name="letter" value={el} {...register('group', { required: 'это поле обязательно к заполнению' })} />
-                                <p className="form__radio-text">{el}</p>
-                            </label>
-                        })}
-                    </div>
-                    {errors?.group?.message && <p className="form__error">{errors?.group.message}</p>}
-                </div>
-                <div className="form__item">
-                    <label for="class">Class</label>
-                    <input type="number" min={1} max={11} id="class" name="class" defaultValue={studentData && studentData.classes} {...register('classes', { required: 'поле обязательно к заполнению' })} />
-                    {errors?.classes?.message && <p className="form__error">{errors?.classes.message}</p>}
-                </div>
-                <div className="form__item">
-                    <label for="photo">Photo</label>
-                    <input type="file" value={''} id="photo" name="photo" {...register('image', { required: 'поле обязательно к заполнению' })} />
-                    {errors?.photo?.message && <p className="form__error">{errors?.photo.message}</p>}
-                </div>*/

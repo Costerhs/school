@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { deletes, getCookie } from '../../assets/firebase/firebaseFunctions'
 import logo from '../../assets/img/s.jpg';
 import './style.scss'
@@ -13,14 +13,14 @@ const Header = () => {
     return (
         <div className='header'>
             <div className="container">
-                <div className="header__logo">
+                <NavLink className="header__logo" to='/'>
                     <img src={logo} alt="logo" />
                     <p className="header__logo-text">chool</p>
-                </div>
+                </NavLink>
                 <div className="header__info">
                     <div className="header__name">{getCookie('userName')}</div>
                     <div className="header__btns">
-                        <button className="header__admin header__btn">Admin</button>
+                        <NavLink to={'/admin'} className="header__admin header__btn">Admin</NavLink>
                         <button className="header__logOut header__btn" onClick={logOut}>LogOut</button>
                     </div>
                 </div>
