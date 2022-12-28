@@ -16,7 +16,7 @@ const Login = () => {
             timer: 1500
         }).then(() => navigate('/'))
     }
-    
+
     return (
         <div className='login'>
             <div className="container">
@@ -31,12 +31,3 @@ const Login = () => {
 }
 
 export default Login
-
-/* <h1>Login</h1>
-            <button onClick={authes}>login</button>
-            <button onClick={logOut}>log out</button>
-            <button onClick={showName}>my name</button>
-            <button onClick={deletes}>delte</button>
-            <NavLink to={'/'}>
-                st
-            </NavLink>*/

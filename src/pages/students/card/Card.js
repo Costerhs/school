@@ -7,24 +7,23 @@ import del from '../../../assets/img/del.png'
 const Card = ({ info, setStudentId, setIsModal, isAdmin }) => {
     const deletesStudent = () => {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Вы уверены?',
+            text: "Вы не сможете вернуть данные!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Да, удалить!'
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteStudent(info.userId)
                 Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    'Удалено!',
+                    'Данные успешно удалены.',
                     'success'
                 )
             }
         })
-
     }
     const showModalUpgradeForm = () => {
         setIsModal(true)

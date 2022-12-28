@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './style.scss'
 import ModalForm from "../../component/form/ModalForm";
 import Student from '../students/Student';
+import { postStudent } from '../../assets/firebase/firabaseconfig';
 
 const Admin = () => {
     const [isModal, setIsModal] = useState(false);

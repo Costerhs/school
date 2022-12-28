@@ -1,0 +1,53 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 10px;
+    .filter__list {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      border: 5px solid rgb(38, 34, 34);;
+      flex-wrap: wrap;
+    .filter__item {
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        select {
+          font-size: 19px;
+        }
+        .filter__groups {
+            display: flex;
+            label {
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              font-size: 16px;
+              position: relative;
+              .filter__radio-text {
+                position: absolute;
+                left: 40%;
+              }
+      
+              &:hover {
+                color: #4caf50;
+              }
+              .filter__radio {
+                appearance: none;
+                padding: 10px 20px;
+                border: 2px solid #ccc;
+                border-radius: 10px;
+                margin-right: 4px;
+                cursor: pointer;
+          
+                &:checked {
+                  background-color: #4caf50;
+                  border-color: #4caf50;
+                }
+              }
+            }  
+          }
+    }
+  }
+}

@@ -13,5 +13,10 @@ const getCookie = (name) => {
     var parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
-
-export { getCookie, deletes, setCookie }
+const getFilled = (obj) => {
+    Object.entries(obj).map(el => {
+        if (!el[1]) delete obj[el[0]]
+    })
+    return obj
+}
+export { getCookie, deletes, setCookie, getFilled }

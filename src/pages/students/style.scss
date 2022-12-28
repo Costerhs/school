@@ -14,6 +14,10 @@
         justify-content: center;
         gap: 40px;
         flex-wrap: wrap;
+        .student__unexist {
+            font-size: 50px;
+            text-align: center;
+        }
     }
     .student__btn {
         position: fixed;

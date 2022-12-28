@@ -1,11 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, push } from 'firebase/database';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { setCookie } from "./firebaseFunctions";
 import { ref, set, update, remove, child } from 'firebase/database'
 import 'firebase/storage';
-import { getStorage } from "firebase/storage";
 import Swal from "sweetalert2";
+import { setCookie } from "../defFunction/defFunction";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr8362HODkkrA7DzYSGtUWFN_MoSKDjiQ",
@@ -39,6 +38,7 @@ const postStudent = (data) => {
     let actualData = data;
     actualData.userId = userId;
     set(ref(db, 'students/' + userId), actualData);
+    console.log(actualData)
 }
 
 const deleteStudent = (id) => {
@@ -50,17 +50,21 @@ const updateStudent = (data, studentId) => {
     return Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Successful change',
+        title: 'Успешно изменено',
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
     })
 }
 
-const getStudents = (setState) => {
+const getStudents = (setState, setState2) => {
     const dbRef = ref(db, 'students/');
-
+    // const qq = query(ref(db, 'students/'), orderByChild('group'))
+    // onValue(qq, (s) => {
+    //     console.log(s.val())
+    // })
     onValue(dbRef, (snapshot) => {
         setState(Object.values(snapshot.val()))
+        setState2(Object.values(snapshot.val()))
     })
 }
 

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
-import { getCookie } from './assets/firebase/firebaseFunctions';
+import { getCookie } from './assets/defFunction/defFunction';
 import Header from './component/header/Header';
 import Admin from './pages/admin/Admin';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
-import Student from './pages/students/Student';
 
 const App = () => {
   const locat = useLocation();

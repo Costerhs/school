@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { deletes, getCookie } from '../../assets/firebase/firebaseFunctions'
+import { getCookie } from '../../assets/defFunction/defFunction';
 import logo from '../../assets/img/s.jpg';
 import './style.scss'
 
