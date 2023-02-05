@@ -13,8 +13,8 @@ const Admin = () => {
             {isModal && <ModalForm closeFunc={setIsModal} />}
             <div className="container">
                 <div className="admin__btns">
-                    <button className="admin__post" onClick={() => setIsModal(true)}>Дбавить ученика</button>
-                    <button className="admin__show" onClick={() => setIsAllStudent(el => !el)}>{isAllStudent ? 'Скрыть' : "Все ученики"}</button>
+                    <button className="admin__post" onClick={() => setIsModal(true)}>Add student</button>
+                    <button className="admin__show" onClick={() => setIsAllStudent(el => !el)}>{isAllStudent ? 'Hide' : "All student"}</button>
                 </div>
                 {isAllStudent && <Student isAdmin />}
             </div>

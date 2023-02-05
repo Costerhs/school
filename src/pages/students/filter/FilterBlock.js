@@ -31,7 +31,7 @@ const FilterBlock = ({ allStudents, setStudents }) => {
     }, [filterData])
     return (
         <form className='filter'>
-            <h1>Фильтрация</h1>
+            <h1>Filtering</h1>
             <div className="filter__list">
                 <div className='filter__item'>
                     <label htmlFor='firstname'>Name</label>

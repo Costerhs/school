@@ -18,8 +18,8 @@ const Card = ({ info, setStudentId, setIsModal, isAdmin }) => {
             if (result.isConfirmed) {
                 deleteStudent(info.userId)
                 Swal.fire(
-                    'Удалено!',
-                    'Данные успешно удалены.',
+                    'Deleted!',
+                    'Data successfully deleted.',
                     'success'
                 )
             }
@@ -34,9 +34,9 @@ const Card = ({ info, setStudentId, setIsModal, isAdmin }) => {
             <img src={info.image || empty} alt="[имя студента]" />
             <div className="card__info">
                 <h2 className='card__title'>{info.firstname} {info.lastname} </h2>
-                <p className='card__group'>Группа: {info.group}</p>
-                <p className='card__class'>Класс: {info.classes}</p>
-                <p className='card__age'>Возраст: {info.age}</p>
+                <p className='card__group'>Group: {info.group}</p>
+                <p className='card__class'>Class: {info.classes}</p>
+                <p className='card__age'>Age: {info.age}</p>
                 {isAdmin && <div className="card__btns">
                     <button className="card__btn card__change" onClick={showModalUpgradeForm}>Change</button>
                     <button className="card__btn card__delete" onClick={deletesStudent}><img src={del} alt="deletebtn" /></button>

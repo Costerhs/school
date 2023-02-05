@@ -27,7 +27,7 @@ const Student = ({ isAdmin, isHome }) => {
                         return <Card isAdmin={isAdmin} setIsModal={setIsModal} setStudentId={setStudentId} key={index} info={el} />
                     }) : <p className='student__unexist'>Студенты отсутствуют</p>}
                 </div>
-                {isHome && students.length === 0 && <div className="student__btn">
+                {isHome && allStudents.length === 0 && <div className="student__btn">
                     <button onClick={() => {
                         setIsModal(true)
                     }}>Create student</button>

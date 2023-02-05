@@ -50,7 +50,7 @@ const updateStudent = (data, studentId) => {
     return Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Успешно изменено',
+        title: 'Successfully changed!',
         showConfirmButton: false,
         timer: 2000
     })
